@@ -34,7 +34,7 @@ pub struct Ed25519KeyPairBytes {
     pub public_key: [u8; 32],
 }
 
-impl<'a> Ed25519KeyPair {
+impl Ed25519KeyPair {
     /// Generates a new random key pair. There is no way to extract the private
     /// key bytes to save them. If you need to save the private key bytes for
     /// future use then use `generate_serializable()` instead.
@@ -108,7 +108,7 @@ impl<'a> Ed25519KeyPair {
     }
 
     /// Returns a reference to the little-endian-encoded public key bytes.
-    pub fn public_key_bytes(&'a self) -> &'a [u8] { &self.private_public[32..] }
+    pub fn public_key_bytes(&self) -> &[u8] { &self.private_public[32..] }
 
     /// Returns the signature of the message `msg`.
     pub fn sign(&self, msg: &[u8]) -> signature::Signature {
